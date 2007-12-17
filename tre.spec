@@ -14,7 +14,6 @@ Group:		System/Libraries
 Source0:	http://laurikari.net/tre/%{name}-%{version}.tar.bz2
 URL:		http://ville.laurikari.net/tre/
 BuildRequires:	libltdl-devel
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 %description
 TRE is a lightweight, robust, and efficient POSIX compliant regexp
