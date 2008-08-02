@@ -1,6 +1,6 @@
 %define name	tre
 %define version	0.7.5
-%define release	%mkrel 3
+%define release	%mkrel 4
 
 %define major 4
 %define libname	%mklibname %{name} %{major}
