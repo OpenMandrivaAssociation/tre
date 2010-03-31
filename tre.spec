@@ -1,14 +1,11 @@
-%define name	tre
-%define version	0.8.0
-%define release	%mkrel 1
-
 %define major 4
-%define libname	%mklibname %{name} %{major}
+%define libname %mklibname %{name} %{major}
+%define develname %mklibname -d %{name}
 
 Summary:	Lightweight, robust, and efficient POSIX compliant regexp matching library
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		tre
+Version:	0.8.0
+Release:	%mkrel 2
 License:	GPL
 Group:		System/Libraries
 Source0:	http://laurikari.net/tre/%{name}-%{version}.tar.bz2
@@ -54,49 +51,32 @@ University of Arizona available) TRE agrep allows full regexps of
 any length, any number of errors, and non-uniform costs for
 insertion, deletion and substitution.
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Header files and libraries for developing apps with %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	lib%{name}-devel = %{version}-%{release}
 
-%description -n	%{libname}-devel
-TRE is a lightweight, robust, and efficient POSIX compliant regexp
-matching library with some exciting features such as approximate
-matching. 
-
-%package -n	%{libname}-static-devel
-Summary:	Static libraries for developing apps with %{name}
-Group:		Development/C
-Requires:	%{libname} = %{version}
-Requires:	%{name}-devel = %{version}
-
-%description -n %{libname}-static-devel
+%description -n	%{develname}
 TRE is a lightweight, robust, and efficient POSIX compliant regexp
 matching library with some exciting features such as approximate
 matching. 
 
 %prep
-
 %setup -q
 
 %build
-
-./configure \
-    --prefix=%{_prefix} \
-    --datadir=%{_datadir} \
-    --mandir=%{_mandir} \
-    --libdir=%{_libdir} \
-    --enable-static \
+%configure2_5x \
+    --disable-static \
     --disable-rpath
 
 %make
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
-%makeinstall
+%makeinstall_std
 
 %find_lang %name
 
@@ -109,7 +89,7 @@ matching.
 %endif
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root)
@@ -122,15 +102,9 @@ matching.
 %{_bindir}/agrep
 %{_mandir}/man1/*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-, root, root)
 %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/tre.pc
 %{_includedir}/tre
-
-%files -n %{libname}-static-devel
-%defattr(-, root, root)
-%{_libdir}/*.a
-
-
