@@ -5,7 +5,7 @@
 Summary:	Lightweight, robust, and efficient POSIX compliant regexp matching library
 Name:		tre
 Version:	0.8.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		System/Libraries
 Source0:	http://laurikari.net/tre/%{name}-%{version}.tar.bz2
