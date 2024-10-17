@@ -9,7 +9,7 @@ Release:	2
 License:	GPL
 Group:		System/Libraries
 Source0:	http://laurikari.net/tre/%{name}-%{version}.tar.bz2
-URL:		http://laurikari.net/tre/
+URL:		https://laurikari.net/tre/
 BuildRequires:	libltdl-devel
 
 %description
